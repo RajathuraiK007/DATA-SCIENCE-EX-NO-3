@@ -120,8 +120,32 @@ df
 
 <img width="1343" height="652" alt="image" src="https://github.com/user-attachments/assets/d8267f86-001e-49ab-964b-c2f6458e660a" />
 
+```
+import pandas as pd
+df=pd.read_csv("C:\\Users\\G.POORNIMA DEVI\\Downloads\\Data_to_Transform.csv")
+import matplotlib.pyplot as plt
+import scipy.stats as stats
+stats.probplot(df['Highly Negative Skew'], dist='norm', plot=plt)
+plt.show()
+```
+
+<img width="1228" height="663" alt="image" src="https://github.com/user-attachments/assets/ca856d16-3950-46fb-8400-00db98aff9d0" />
+
+```
+import pandas as pd
+from sklearn.preprocessing import PowerTransformer
+df=pd.read_csv("C:\\Users\\G.POORNIMA DEVI\\Downloads\\Data_to_Transform.csv")
+pt=PowerTransformer(method='yeo-johnson')
+df['Power Transformed yeo-johnson']=pt.fit_transform(df[['Highly Negative Skew']])
+import scipy.stats as stats
+stats.probplot(df['Power Transformed yeo-johnson'],dist='norm',plot=plt)
+plt.show()
+```
+
+<img width="1367" height="703" alt="image" src="https://github.com/user-attachments/assets/e948485e-8396-447c-ac83-232967480382" />
+
 
 # RESULT:
-
+Thus, the Python program for feature encoding and feature transformation are executed successfully.
 
        
