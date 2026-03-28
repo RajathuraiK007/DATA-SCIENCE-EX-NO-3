@@ -50,7 +50,78 @@ df.isnull().sum(axis=0)
 ```
 <img width="1380" height="269" alt="image" src="https://github.com/user-attachments/assets/898cb12e-40e4-4094-ac98-34ad7e131f66" />
 
+```
+from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
+le=LabelEncoder()
+df["nom_0_encoded"]=le.fit_transform(df["nom_0"])
+df
+```
+
+<img width="1152" height="574" alt="image" src="https://github.com/user-attachments/assets/5e58eac3-1d99-494e-9cd1-eba2a0c892cb" />
+
+```
+oe=OrdinalEncoder(categories=[['Cold','Warm','Hot']])
+df["ord_2_encoded"]=oe.fit_transform(df[["ord_2"]])
+df
+```
+
+<img width="1317" height="637" alt="image" src="https://github.com/user-attachments/assets/16674b58-80ff-4abb-8ed7-7cbaf9ea46e1" />
+
+```
+df_ohe_encoded=pd.get_dummies(data=df, columns=['bin_2'])
+df_ohe_encoded
+```
+
+<img width="1256" height="670" alt="image" src="https://github.com/user-attachments/assets/406e6377-b379-4ead-8ad4-b8f70ecd84f6" />
+
+```
+import category_encoders as ce
+be=ce.BinaryEncoder()
+df_be_encoded=be.fit_transform(X=[df['bin_1'],df['bin_2']])
+df_be_encoded
+```
+
+<img width="1173" height="217" alt="image" src="https://github.com/user-attachments/assets/d0239dc8-dcd0-479b-99f9-62fc78d65be8" />
+
+```
+import pandas as pd
+import numpy as np
+df=pd.read_csv("C:\\Users\\G.POORNIMA DEVI\\Downloads\\Data_to_Transform.csv")
+df
+```
+
+<img width="952" height="590" alt="image" src="https://github.com/user-attachments/assets/79ec80f8-359b-4cbe-bb83-703dbd219bf2" />
+
+```
+df['log Tranformed MPS']=np.log1p(df['Moderate Positive Skew'])
+df['Reciprocal HPS']=1/df['Highly Positive Skew']
+df['Square Transformed MNS']=np.square(df['Moderate Negative Skew'])
+df['Square Transformed HNS']=np.square(df['Highly Negative Skew'])
+df
+```
+
+<img width="1365" height="675" alt="image" src="https://github.com/user-attachments/assets/e24ace5d-0dfc-406d-bbca-33c6e80aa825" />
+
+
+```
+from sklearn.preprocessing import PowerTransformer
+pt=PowerTransformer(method='box-cox')
+df['Power Transformed Box-Cox']=pt.fit_transform(df[['Moderate Positive Skew']])
+df
+```
+
+<img width="1349" height="609" alt="image" src="https://github.com/user-attachments/assets/8d907aa1-6d7c-4bb7-9af0-2301391e1e1d" />
+
+```
+pt=PowerTransformer(method='yeo-johnson')
+df['Power Transformed yeo-johnson']=pt.fit_transform(df[['Highly Negative Skew']])
+df
+```
+
+<img width="1343" height="652" alt="image" src="https://github.com/user-attachments/assets/d8267f86-001e-49ab-964b-c2f6458e660a" />
+
+
 # RESULT:
-       # INCLUDE YOUR RESULT HERE
+
 
        
